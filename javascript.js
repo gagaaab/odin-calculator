@@ -1,18 +1,3 @@
-function add(a, b) {
-    return a + b
-}
-
-function subtract(a, b) {
-    return a - b
-}
-
-function multiply(a, b) {
-    return a * b
-}
-
-function divide(a, b) {
-    return a / b
-}
 
 let firstNumber = ''
 let secondNumber = ''
@@ -40,3 +25,40 @@ operators.forEach((button) =>
 function updateDisplay() {
     equation.textContent = `${firstNumber} ${operator} ${secondNumber}`
 }
+
+function add(a, b) {
+    return a + b
+}
+
+function subtract(a, b) {
+    return a - b
+}
+
+function multiply(a, b) {
+    return a * b
+}
+
+function divide(a, b) {
+    return a / b
+}
+
+function operate(a, b, symbol) {
+    switch(symbol) {
+        case '+':
+            return add(a, b)
+        case '-':
+            return subtract(a, b)
+        case '×':
+            return multiply(a, b)
+        case '÷':
+            return divide(a, b)
+    }
+}
+
+let answer = ''
+const equal = document.querySelector('.equal')
+const answerDisplay = document.querySelector('.answer')
+equal.addEventListener('click', () => {
+    answer = operate(firstNumber, secondNumber, operator)
+    answerDisplay.textContent = answer
+})
