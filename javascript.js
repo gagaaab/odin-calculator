@@ -7,6 +7,13 @@ const digits = document.querySelectorAll('.digit')
 const equation = document.querySelector('.equation')
 digits.forEach((button) =>
         button.addEventListener('click', () => {
+            if(answer && secondNumber !== '') {
+            firstNumber = ''
+            secondNumber = ''
+            operator = ''
+            answer = ''
+            answerDisplay.textContent = answer
+            }
             if(!operator) {
             firstNumber += button.textContent
             } else {
@@ -18,8 +25,20 @@ digits.forEach((button) =>
 const operators = document.querySelectorAll('.operator')
 operators.forEach((button) =>
     button.addEventListener('click', () => {
-        operator = button.textContent
-        updateDisplay()
+        if(operator) {
+            answer = operate(firstNumber, secondNumber, operator)
+            answerDisplay.textContent = answer
+            operator = button.textContent
+            updateDisplay()
+        } if (answer) {
+            firstNumber = answer
+            secondNumber = ''
+            operator = button.textContent
+            updateDisplay()
+        } else {
+            operator = button.textContent
+            updateDisplay()
+        }
     }))
 
 function updateDisplay() {
@@ -43,6 +62,8 @@ function divide(a, b) {
 }
 
 function operate(a, b, symbol) {
+    a = Number(a)
+    b = Number(b)
     switch(symbol) {
         case '+':
             return add(a, b)
