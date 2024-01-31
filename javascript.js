@@ -8,15 +8,12 @@ const equation = document.querySelector('.equation')
 digits.forEach((button) =>
         button.addEventListener('click', () => {
             if(answer && secondNumber !== '') {
-            firstNumber = ''
-            secondNumber = ''
-            operator = ''
-            answer = ''
-            answerDisplay.textContent = answer
+            clear()
             }
             if(!operator) {
             firstNumber += button.textContent
-            } else {
+            } 
+            else {
             secondNumber += button.textContent
             }
             updateDisplay()
@@ -26,16 +23,16 @@ const operators = document.querySelectorAll('.operator')
 operators.forEach((button) =>
     button.addEventListener('click', () => {
         if(operator) {
-            answer = operate(firstNumber, secondNumber, operator)
-            answerDisplay.textContent = answer
+            solve()
             operator = button.textContent
-            updateDisplay()
-        } if (answer) {
+        }
+        if (answer) {
             firstNumber = answer
             secondNumber = ''
             operator = button.textContent
             updateDisplay()
-        } else {
+        } 
+        else {
             operator = button.textContent
             updateDisplay()
         }
@@ -43,6 +40,7 @@ operators.forEach((button) =>
 
 function updateDisplay() {
     equation.textContent = `${firstNumber} ${operator} ${secondNumber}`
+    answerDisplay.textContent = answer
 }
 
 function add(a, b) {
@@ -76,10 +74,42 @@ function operate(a, b, symbol) {
     }
 }
 
+function solve() {
+    answer = Math.round(operate(firstNumber, secondNumber, operator) * 1000) / 1000
+    updateDisplay()
+}
+
 let answer = ''
-const equal = document.querySelector('.equal')
+const equalBtn = document.querySelector('.equal')
 const answerDisplay = document.querySelector('.answer')
-equal.addEventListener('click', () => {
-    answer = operate(firstNumber, secondNumber, operator)
-    answerDisplay.textContent = answer
+equalBtn.addEventListener('click', () => {
+    solve()
+})
+
+function clear() {
+    firstNumber = ''
+    secondNumber = ''
+    operator = ''
+    answer = ''
+    updateDisplay()
+}
+
+const clearBtn = document.querySelector('.clear')
+clearBtn.addEventListener('click', () => {
+    clear()
+})
+
+const deleteBtn = document.querySelector('.delete')
+deleteBtn.addEventListener('click', () => {
+    if(!operator) {
+    firstNumber = firstNumber.slice(0, -1)
+    } 
+    else if (operator && secondNumber == '') {
+        operator = ''
+    }
+    else {
+    secondNumber = secondNumber.slice(0, -1)
+    }
+    answer = ''
+    updateDisplay()
 })
