@@ -4,11 +4,12 @@ let secondNumber = ''
 let operator = ''
 
 const digits = document.querySelectorAll('.digit')
-const equation = document.querySelector('.equation')
+
 digits.forEach((button) =>
         button.addEventListener('click', () => {
             if(answer && secondNumber !== '') {
             clear()
+            equation.textContent = ''
             }
             if(!operator) {
             firstNumber += button.textContent
@@ -18,6 +19,28 @@ digits.forEach((button) =>
             }
             updateDisplay()
         }))
+
+const decimal = document.querySelector('.decimal')
+decimal.addEventListener('click', () => {
+        if(answer && secondNumber !== '') {
+        clear()
+        equation.textContent = ''
+        firstNumber = '0.'
+        }
+        else if(secondNumber.toString().includes('.')) {
+            return false
+        }
+        else if(firstNumber.toString().includes('.') && !operator) {
+            return false
+        }
+        else if(!operator) {
+        firstNumber += '.'
+        } 
+        else {
+        secondNumber += '.'
+        }
+        updateDisplay()
+        })
 
 const operators = document.querySelectorAll('.operator')
 operators.forEach((button) =>
@@ -29,18 +52,25 @@ operators.forEach((button) =>
         if (answer) {
             firstNumber = answer
             secondNumber = ''
+            answer = ''
             operator = button.textContent
-            updateDisplay()
         } 
         else {
             operator = button.textContent
-            updateDisplay()
         }
+        equation.textContent = `${firstNumber} ${operator} ${secondNumber}`
+        updateDisplay()
     }))
 
+const equation = document.querySelector('.equation')
 function updateDisplay() {
-    equation.textContent = `${firstNumber} ${operator} ${secondNumber}`
-    answerDisplay.textContent = answer
+    if (!answer && !secondNumber) {
+        answerDisplay.textContent = firstNumber
+    } else if (answer) {
+        answerDisplay.textContent = answer
+    } else {
+        answerDisplay.textContent = secondNumber
+    }
 }
 
 function add(a, b) {
@@ -71,6 +101,8 @@ function operate(a, b, symbol) {
             return multiply(a, b)
         case '÷':
             return divide(a, b)
+        default:
+            return Number(a)
     }
 }
 
@@ -84,6 +116,7 @@ const equalBtn = document.querySelector('.equal')
 const answerDisplay = document.querySelector('.answer')
 equalBtn.addEventListener('click', () => {
     solve()
+    equation.textContent = `${firstNumber} ${operator} ${secondNumber} =`
 })
 
 function clear() {
@@ -102,13 +135,13 @@ clearBtn.addEventListener('click', () => {
 const deleteBtn = document.querySelector('.delete')
 deleteBtn.addEventListener('click', () => {
     if(!operator) {
-    firstNumber = firstNumber.slice(0, -1)
+    firstNumber = firstNumber.toString().slice(0, -1)
     } 
     else if (operator && secondNumber == '') {
         operator = ''
     }
     else {
-    secondNumber = secondNumber.slice(0, -1)
+    secondNumber = secondNumber.toString().slice(0, -1)
     }
     answer = ''
     updateDisplay()
