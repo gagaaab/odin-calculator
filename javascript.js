@@ -37,7 +37,12 @@ decimal.addEventListener('click', () => {
         firstNumber += '.'
         } 
         else {
-        secondNumber += '.'
+            if (secondNumber == '') {
+                secondNumber = '0.'
+            }
+            else {
+                secondNumber += '.'
+            }
         }
         updateDisplay()
         })
@@ -124,6 +129,7 @@ function clear() {
     secondNumber = ''
     operator = ''
     answer = ''
+    equation.textContent = `${firstNumber} ${operator} ${secondNumber}`
     updateDisplay()
 }
 
