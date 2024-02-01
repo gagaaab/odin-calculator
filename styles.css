@@ -30,9 +30,26 @@ button.clear {
     background-color: #b25c5c
 }
 
-button:hover {
-    border:1px solid #fcfcfc
+button.digit:hover, button.equal:hover, button.decimal:hover {
+    background-color: #212121f1
 }
+
+button.operator:hover {
+    background-color: #454545f1;
+}
+
+button.delete:hover {
+    background-color: #c6acacde;
+}
+
+button.clear:hover {
+    background-color: #b25c5cf1;
+}
+
+button:active {
+    font-size: 32px;
+}
+
 
 .equation, .answer {
     font-family: 'Barlow';
@@ -40,6 +57,7 @@ button:hover {
 }
 
 .equation {
+    padding-top: 25px;
     font-weight: 300;
     font-size: 36px;
 }
