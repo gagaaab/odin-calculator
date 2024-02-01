@@ -10,7 +10,7 @@ button {
     color: #fcfcfc;
     border-radius: 0;
     border: none;
-    padding: 25px;
+    padding: 25px 0px;
 }
 
 button.digit, button.equal, button.decimal {
@@ -49,6 +49,9 @@ button:active {
     font-size: 32px;
 }
 
+button.clear:active, button.delete:active {
+    font-size: 36px;
+}
 
 .equation, .answer {
     font-family: 'Barlow';
@@ -67,7 +70,7 @@ button:active {
 }
 
 .calculator {
-    min-width: 400px;
+    width: 400px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
@@ -88,19 +91,17 @@ main {
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-
-
 .footer {
     font-family: 'Barlow';
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 96px;
+    padding: 24px;
     bottom: 0;
     left: 0;
     position: absolute;
     background: #212121;
-    font-size: 36px;
+    font-size: 24px;
     color: #fcfcfc;
 }
