@@ -4,6 +4,13 @@ html {
     min-height: 100%;
 }
 
+body {
+    margin-bottom: 100px;
+    background-color: #fcfcfc;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 button {
     font-family: 'Barlow';
     font-size: 36px;
