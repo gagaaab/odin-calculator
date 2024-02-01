@@ -8,10 +8,9 @@ button {
     font-family: 'Barlow';
     font-size: 36px;
     color: #fcfcfc;
-    width: 150px;
-    height: 100px;
     border-radius: 0;
     border: none;
+    padding: 25px;
 }
 
 button.digit, button.equal, button.decimal {
@@ -65,11 +64,10 @@ button:active {
 .answer {
     font-weight: 500;
     font-size: 48px;
-
 }
 
 .calculator {
-    width: 600px;
+    min-width: 400px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
