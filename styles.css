@@ -20,7 +20,7 @@ button {
     padding: 25px 0px;
 }
 
-button.digit, button.equal, button.decimal {
+button.digit, button.equal, button.decimal, button.zeroDigit {
     background-color: #212121;
 }
 
@@ -36,7 +36,7 @@ button.clear {
     background-color: #b25c5c
 }
 
-button.digit:hover, button.equal:hover, button.decimal:hover {
+button.digit:hover, button.equal:hover, button.decimal:hover, button.zeroDigit:hover {
     background-color: #212121f1
 }
 

@@ -7,14 +7,39 @@ const digits = document.querySelectorAll('.digit')
 
 digits.forEach((button) =>
         button.addEventListener('click', () => {
-            if(answer && secondNumber !== '') {
+            if(answer !== '') {
             clear()
             equation.textContent = ''
             }
-            if(!operator) {
+            if(firstNumber === '0') {
+            firstNumber = ''
+            }
+            if(firstNumber !== '0' && secondNumber === '0') {
+            secondNumber = ''
+            }
+            if(!operator && firstNumber < 100000000) {
             firstNumber += button.textContent
             } 
-            else {
+            if(operator && secondNumber < 100000000) {
+            secondNumber += button.textContent
+            }
+            updateDisplay()
+        }))
+
+const zeroDigit = document.querySelectorAll('.zeroDigit')
+
+zeroDigit.forEach((button) =>
+        button.addEventListener('click', () => {
+            if(firstNumber === '0') {
+            firstNumber = ''
+            }
+            if(firstNumber !== '0' && secondNumber === '0') {
+            secondNumber = ''
+            }
+            if(!operator && firstNumber < 100000000) {
+            firstNumber += button.textContent
+            } 
+            if(operator && secondNumber < 100000000) {
             secondNumber += button.textContent
             }
             updateDisplay()
@@ -22,7 +47,7 @@ digits.forEach((button) =>
 
 const decimal = document.querySelector('.decimal')
 decimal.addEventListener('click', () => {
-        if(answer && secondNumber !== '') {
+        if(answer !== '') {
         clear()
         equation.textContent = ''
         firstNumber = '0.'
