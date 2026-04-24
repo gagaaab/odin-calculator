@@ -98,6 +98,9 @@ function updateDisplay() {
         answerDisplay.textContent = firstNumber
     } else if (answer) {
         answerDisplay.textContent = answer
+        if (answer > 10000000) {
+            answerDisplay.textContent = Number(answer).toExponential(3)
+        }
     } else {
         answerDisplay.textContent = secondNumber
     }
